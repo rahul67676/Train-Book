@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+
+metadata:
+  name: trainbook-service
+
+spec:
+  type: LoadBalancer
+
+  selector:
+    app: trainbook
+
+  ports:
+  - port: 80
+    targetPort: 8080
