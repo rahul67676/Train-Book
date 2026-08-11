@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: trainbook
+
+spec:
+  replicas: 2
+
+  selector:
+    matchLabels:
+      app: trainbook
+
+  template:
+    metadata:
+      labels:
+        app: trainbook
+
+    spec:
+      containers:
+      - name: trainbook
+        image: IMAGE_URI
+        imagePullPolicy: Always
+
+        ports:
+        - containerPort: 8080
