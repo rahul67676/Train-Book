@@ -1,3 +1,4 @@
+
 name: Train Ticket Reservation CI/CD
 
 on:
@@ -10,6 +11,9 @@ on:
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
+
+    env:
+      ECR_REPOSITORY: rahul
 
     steps:
 
@@ -37,11 +41,16 @@ jobs:
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v2
 
-    
+    - name: Build Docker Image
+      run: |
+        docker build -t $ECR_REPOSITORY:latest .
+
+    - name: Tag Docker Image
+      run: |
+        docker tag $ECR_REPOSITORY:latest \
+          ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/$ECR_REPOSITORY:latest
+
     - name: Push Docker Image
       run: |
-        docker push /
-        ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/$ECR_REPOSITORY:latest
-
-
-   
+        docker push \
+          ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/$ECR_REPOSITORY:latest
