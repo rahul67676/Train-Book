@@ -40,7 +40,7 @@ jobs:
     
     - name: Push Docker Image
       run: |
-        docker push \
+        docker push /
         ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/$ECR_REPOSITORY:latest
 
    
