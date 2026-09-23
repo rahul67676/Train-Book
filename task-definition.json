@@ -1,41 +1,95 @@
 {
-  "family": "rahultask",
-  "networkMode": "awsvpc",
-  "requiresCompatibilities": [
-    "FARGATE"
-  ],
-  "cpu": "512",
-  "memory": "1024",
-  "executionRoleArn": "arn:aws:iam::921040036993:role/ecsTaskExecutionRole",
-  "containerDefinitions": [
-    {
-      "name": "container1",
-      "image": "921040036993.dkr.ecr.us-east-1.amazonaws.com/rahul:latest",
-      "cpu": 0,
-      "portMappings": [
+    "taskDefinitionArn": "arn:aws:ecs:us-east-1:921040036993:task-definition/rahultask:3",
+    "containerDefinitions": [
         {
-          "containerPort": 80,
-          "hostPort": 80,
-          "protocol": "tcp",
-          "name": "container1-80-tcp",
-          "appProtocol": "http"
+            "name": "container1",
+            "image": "921040036993.dkr.ecr.us-east-1.amazonaws.com/rahul@sha256:9f72e66143a46e489185086619b8d7453f026fb13ad34085a8de8316faccbd49",
+            "cpu": 0,
+            "portMappings": [
+                {
+                    "containerPort": 80,
+                    "hostPort": 80,
+                    "protocol": "tcp",
+                    "name": "container1-80-tcp",
+                    "appProtocol": "http"
+                }
+            ],
+            "essential": true,
+            "environment": [],
+            "environmentFiles": [],
+            "mountPoints": [],
+            "volumesFrom": [],
+            "ulimits": [],
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-group": "/ecs/rahultask",
+                    "awslogs-create-group": "true",
+                    "awslogs-region": "us-east-1",
+                    "awslogs-stream-prefix": "ecs"
+                },
+                "secretOptions": []
+            },
+            "systemControls": []
         }
-      ],
-      "essential": true,
-      "environment": [],
-      "environmentFiles": [],
-      "mountPoints": [],
-      "volumesFrom": [],
-      "ulimits": [],
-      "logConfiguration": {
-        "logDriver": "awslogs",
-        "options": {
-          "awslogs-group": "/ecs/rahultask",
-          "awslogs-create-group": "true",
-          "awslogs-region": "us-east-1",
-          "awslogs-stream-prefix": "ecs"
+    ],
+    "family": "rahultask",
+    "taskRoleArn": "arn:aws:iam::921040036993:role/ECS-role-auto",
+    "executionRoleArn": "arn:aws:iam::921040036993:role/ecsTaskExecutionRole",
+    "networkMode": "awsvpc",
+    "revision": 3,
+    "volumes": [],
+    "status": "ACTIVE",
+    "requiresAttributes": [
+        {
+            "name": "com.amazonaws.ecs.capability.logging-driver.awslogs"
+        },
+        {
+            "name": "ecs.capability.execution-role-awslogs"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.ecr-auth"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.21"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.task-iam-role"
+        },
+        {
+            "name": "ecs.capability.execution-role-ecr-pull"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
+        },
+        {
+            "name": "ecs.capability.task-eni"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.29"
         }
-      }
-    }
-  ]
+    ],
+    "placementConstraints": [],
+    "compatibilities": [
+        "EC2",
+        "MANAGED_INSTANCES",
+        "FARGATE"
+    ],
+    "runtimePlatform": {
+        "cpuArchitecture": "X86_64",
+        "operatingSystemFamily": "LINUX"
+    },
+    "requiresCompatibilities": [
+        "EC2",
+        "MANAGED_INSTANCES"
+    ],
+    "cpu": "1024",
+    "memory": "3072",
+    "registeredAt": "2026-09-23T09:54:58.931Z",
+    "registeredBy": "arn:aws:iam::921040036993:root",
+    "enableFaultInjection": false,
+    "tags": []
 }
